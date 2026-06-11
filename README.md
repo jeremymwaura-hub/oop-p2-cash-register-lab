@@ -6,9 +6,24 @@ Now that we’ve discussed more about object oriented design philosophies and te
 
 This exercise implements a `CashRegister` class with support for:
 * optional percentage discounts
-* item addition with quantities
-* tracking previous transactions
+* adding items with quantities
+* tracking item history in `items`
+* storing transactions in `previous_transactions`
 * applying discounts and voiding the last transaction
+
+## Features
+
+The `CashRegister` class supports:
+* `discount` validation as an integer between `0` and `100`
+* `add_item(item, price, quantity=1)` to update the total and item list
+* `apply_discount()` to apply a percentage discount to the current total
+* `void_last_transaction()` to remove the most recent transaction and adjust the total
+
+## Screenshot
+
+![Cash Register Example](screenshot.png)
+
+> Replace `screenshot.png` with an actual screenshot of the running tests or the completed object implementation.
 
 ## Testing
 
@@ -18,7 +33,11 @@ Run the test suite with:
 py -3 -m pytest -q
 ```
 
-## Tools & Resources
+## Resources
+
+* [Python Classes](https://docs.python.org/3/tutorial/classes.html)
+* [GitHub Repo](https://github.com/learn-co-curriculum/oop-p2-cash-register-lab)
+
 * [GitHub Repo](https://github.com/learn-co-curriculum/oop-p2-cash-register-lab)
 * [Python Classes](https://docs.python.org/3/tutorial/classes.html)
 

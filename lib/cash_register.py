@@ -1,8 +1,14 @@
 #!/usr/bin/env python3
 
 class CashRegister:
+    """A simple cash register model for adding items, applying discounts, and voiding transactions."""
+
     def __init__(self, discount=0):
-        # Initialize the cash register with optional discount.
+        """Initialize a CashRegister.
+
+        Args:
+            discount (int, optional): Percentage discount applied to the total. Defaults to 0.
+        """
         self._discount = 0
         self.discount = discount
         self.total = 0.0
@@ -15,7 +21,11 @@ class CashRegister:
 
     @discount.setter
     def discount(self, value):
-        # Ensure discount is an integer between 0 and 100 inclusive.
+        """Validate and set the discount percentage.
+
+        The discount must be an integer between 0 and 100 inclusive.
+        If the value is invalid, print an error message and keep the existing discount.
+        """
         try:
             discount_value = int(value)
         except (TypeError, ValueError):
@@ -28,7 +38,11 @@ class CashRegister:
             print("Not valid discount")
 
     def add_item(self, item, price, quantity=1):
-        # Add an item to the register, update total, item list, and transaction history.
+        """Add an item to the register.
+
+        This updates the running total, adds every item name to the items list,
+        and stores the transaction details for later operations.
+        """
         item_total = price * quantity
         self.total += item_total
 
@@ -42,7 +56,12 @@ class CashRegister:
         })
 
     def apply_discount(self):
-        # Apply the register discount to the current total.
+        """Apply the current discount to the register total.
+
+        If a discount exists and there is at least one prior transaction, the total
+        is reduced and the last transaction is removed from history and items.
+        Otherwise, print a message that no discount can be applied.
+        """
         if self.discount == 0 or not self.previous_transactions:
             print("There is no discount to apply.")
             return
@@ -59,7 +78,7 @@ class CashRegister:
         print(f"After the discount, the total comes to ${int(self.total) if self.total.is_integer() else self.total}.")
 
     def void_last_transaction(self):
-        # Remove the most recent transaction from the register.
+        """Remove the most recent transaction and adjust the total and items."""
         if not self.previous_transactions:
             print("There is no transaction to void.")
             return
